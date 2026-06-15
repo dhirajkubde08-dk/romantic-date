@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Date Invitation ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+overflow:hidden;
+height:100vh;
+color:white;
+background:linear-gradient(-45deg,#ff4d6d,#ff758f,#ff9a9e,#fad0c4);
+background-size:400% 400%;
+animation:gradient 15s ease infinite;
+}
+
+@keyframes gradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.page{
+position:absolute;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+opacity:0;
+pointer-events:none;
+transition:.6s;
+}
+
+.page.active{
+opacity:1;
+pointer-events:auto;
+}
+
+.card{
+width:min(90%,700px);
+padding:35px;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,.2);
+border-radius:25px;
+text-align:center;
+box-shadow:0 8px 30px rgba(0,0,0,.2);
+}
+
+h1{
+margin-bottom:20px;
+}
+
+button{
+padding:14px 28px;
+border:none;
+border-radius:40px;
+cursor:pointer;
+font-size:16px;
+margin:10px;
+transition:.3s;
+}
+
+.primary{
+background:#fff;
+color:#ff3366;
+font-weight:bold;
+}
+
+.primary:hover{
+transform:translateY(-3px);
+}
+
+.secondary{
+background:rgba(255,255,255,.2);
+color:white;
+}
+
+.loading-line{
+margin:12px 0;
+font-size:18px;
+opacity:0;
+}
+
+.progress{
+width:100%;
+height:20px;
+background:rgba(255,255,255,.2);
+border-radius:20px;
+overflow:hidden;
+margin:20px 0;
+}
+
+.progress-fill{
+height:100%;
+width:0;
+background:white;
+transition:3s;
+}
+
+.option{
+display:block;
+margin:12px auto;
+width:250px;
+}
+
+.countdown{
+margin-top:15px;
+font-size:18px;
+}
+
+.heart{
+position:fixed;
+bottom:-50px;
+font-size:22px;
+animation:floatHeart 6s linear forwards;
+pointer-events:none;
+}
+
+@keyframes floatHeart{
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+.confetti{
+position:fixed;
+width:10px;
+height:10px;
+background:white;
+top:-20px;
+animation:fall 4s linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(720deg);
+}
+}
+
+#muteBtn{
+position:fixed;
+top:15px;
+right:15px;
+z-index:999;
+}
+
+.small{
+font-size:15px;
+opacity:.85;
+margin-top:10px;
+}
+
+.typewriter{
+overflow:hidden;
+white-space:nowrap;
+border-right:3px solid white;
+animation:typing 4s steps(40,end),blink .8s infinite;
+}
+
+@keyframes typing{
+from{width:0}
+to{width:100%}
+}
+
+@keyframes blink{
+50%{border-color:transparent;}
+}
+
+@media(max-width:600px){
+.card{
+padding:25px;
+}
+.option{
+width:100%;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<button id="muteBtn" class="secondary">🔊</button>
+
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+
+<div class="page active" id="landing">
+<div class="card">
+<h1>Love Engine Booting ❤️</h1>
+
+<div class="loading-line">Initializing Love Engine v2.0...</div>
+<div class="loading-line">Loading Memories ✓</div>
+<div class="loading-line">Loading Happiness ✓</div>
+<div class="loading-line">Loading Future Plans ✓</div>
+<div class="loading-line">Searching for Best Girlfriend ✓</div>
+
+<br>
+<button class="primary" id="continueBtn" style="display:none;">Continue ❤️</button>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page" id="invite">
+<div class="card">
+<h1>Hey Beautiful ❤️</h1>
+
+<p>
+A critical decision requires your approval.
+<br><br>
+Would you like to go on a special date with
+<br><br>
+<b>Mr. Dhiraj Kubde?</b>
+</p>
+
+<br>
+
+<button class="primary" id="yesBtn">
+YES ❤️
+</button>
+
+<button class="secondary" id="noBtn">
+NO 😒
+</button>
+</div>
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page" id="destination">
+<div class="card">
+<h1>Select Destination</h1>
+
+<button class="primary option" id="kokan">
+🏝️ Kokan, Maharashtra
+</button>
+
+<button class="secondary option moveDest">
+🗼 Paris, France
+</button>
+
+<button class="secondary option moveDest">
+🏔️ Switzerland
+</button>
+
+<button class="secondary option moveDest">
+🌊 Maldives
+</button>
+
+<button class="secondary option moveDest">
+🚀 Moon
+</button>
+</div>
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page" id="compatibility">
+<div class="card">
+<h1>Compatibility Analysis</h1>
+
+<div class="progress">
+<div class="progress-fill" id="bar"></div>
+</div>
+
+<p>Kokan — 99.99%</p>
+<p>Paris — 12%</p>
+<p>Switzerland — 8%</p>
+<p>Maldives — 5%</p>
+<p>Moon — 0.3%</p>
+
+<br>
+
+<h2>
+Recommended Destination:
+🏝️ Kokan
+</h2>
+
+<br>
+
+<button class="primary" id="nextDate">
+Continue
+</button>
+</div>
+</div>
+
+<!-- PAGE 5 -->
+
+<div class="page" id="datePage">
+<div class="card">
+<h1>Select Preferred Date</h1>
+
+<button class="primary" id="correctDate">
+❤️ 06 July 2026
+</button>
+
+<button class="secondary" id="wrongDate">
+😴 Some Other Date
+</button>
+</div>
+</div>
+
+<!-- PAGE 6 -->
+
+<div class="page" id="checks">
+<div class="card">
+<h1>Preparing Romance...</h1>
+
+<p>Checking availability ✓</p>
+<p>Checking romance forecast ✓</p>
+<p>Checking happiness index ✓</p>
+<p>All systems ready ✓</p>
+
+<br>
+
+<button class="primary" id="confirmBtn">
+Generate Confirmation
+</button>
+</div>
+</div>
+
+<!-- PAGE 7 -->
+
+<div class="page" id="confirmation">
+<div class="card">
+
+<h1>💌 OFFICIAL DATE CONFIRMATION</h1>
+
+<br>
+
+<p>
+Congratulations!
+<br><br>
+
+You have successfully booked one date with <br><br>
+
+<b>Mr. Dhiraj Kubde ❤️</b> <br><br>
+
+Destination: <br>
+🏝️ Kokan, Maharashtra
+
+<br><br>
+
+Date: <br>
+📅 06 July 2026
+
+<br><br>
+
+Status: <br> <b>CONFIRMED ✅</b>
+
+</p>
+
+<div class="countdown" id="countdown"></div>
+
+<br>
+
+<button class="primary" id="endingBtn">
+Continue ❤️
+</button>
+
+</div>
+</div>
+
+<!-- PAGE 8 -->
+
+<div class="page" id="ending">
+<div class="card">
+
+<h2 class="typewriter">
+Every algorithm I write can be optimized.
+</h2>
+
+<br><br>
+
+<p>
+Every pipeline can be improved.
+<br>
+Every dataset can be cleaned.
+<br><br>
+
+But I couldn't find a better partner than you. <br><br>
+
+See you on 06 July ❤️
+
+</p>
+
+<br>
+
+<button class="primary" id="loveBtn">
+I Love You Too ❤️
+</button>
+
+<div class="small">
+(Secret: click title 5 times)
+</div>
+
+</div>
+</div>
+
+<script>
+
+const pages=document.querySelectorAll('.page');
+
+function show(id){
+pages.forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+const lines=document.querySelectorAll('.loading-line');
+
+lines.forEach((line,index)=>{
+setTimeout(()=>{
+line.style.opacity=1;
+},index*800);
+});
+
+setTimeout(()=>{
+document.getElementById('continueBtn').style.display='inline-block';
+},4500);
+
+document.getElementById('continueBtn').onclick=()=>{
+show('invite');
+playClick();
+};
+
+function move(btn){
+const x=Math.random()*(window.innerWidth-120);
+const y=Math.random()*(window.innerHeight-80);
+
+btn.style.position='fixed';
+btn.style.left=x+'px';
+btn.style.top=y+'px';
+}
+
+const noBtn=document.getElementById('noBtn');
+
+noBtn.addEventListener('mouseenter',()=>{
+move(noBtn);
+});
+
+noBtn.addEventListener('click',()=>{
+alert("Access Denied ❌\nThis option is unavailable for premium girlfriends.");
+});
+
+document.getElementById('yesBtn').onclick=()=>{
+playClick();
+show('destination');
+};
+
+document.querySelectorAll('.moveDest').forEach(btn=>{
+btn.addEventListener('mouseenter',()=>{
+move(btn);
+});
+});
+
+document.getElementById('kokan').onclick=()=>{
+
+show('compatibility');
+
+setTimeout(()=>{
+document.getElementById('bar').style.width='100%';
+},300);
+};
+
+document.getElementById('nextDate').onclick=()=>{
+show('datePage');
+};
+
+document.getElementById('wrongDate').addEventListener('mouseenter',()=>{
+move(document.getElementById('wrongDate'));
+});
+
+document.getElementById('correctDate').onclick=()=>{
+show('checks');
+};
+
+document.getElementById('confirmBtn').onclick=()=>{
+
+show('confirmation');
+launchConfetti();
+};
+
+document.getElementById('endingBtn').onclick=()=>{
+show('ending');
+};
+
+document.getElementById('loveBtn').onclick=()=>{
+alert(
+"Mission Accomplished ❤️\n\nThank you for being the best part of my life."
+);
+};
+
+function launchConfetti(){
+
+for(let i=0;i<120;i++){
+
+const c=document.createElement('div');
+
+c.className='confetti';
+
+c.style.left=Math.random()*100+'vw';
+
+c.style.animationDelay=Math.random()*2+'s';
+
+document.body.appendChild(c);
+
+setTimeout(()=>{
+c.remove();
+},5000);
+}
+}
+
+setInterval(()=>{
+
+const heart=document.createElement('div');
+
+heart.className='heart';
+
+heart.innerHTML='❤️';
+
+heart.style.left=Math.random()*100+'vw';
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+},400);
+
+function updateCountdown(){
+
+const target=new Date("July 06, 2026 00:00:00").getTime();
+
+const now=new Date().getTime();
+
+const diff=target-now;
+
+if(diff<0)return;
+
+const days=Math.floor(diff/(1000*60*60*24));
+
+document.getElementById('countdown').innerHTML=
+"⏳ Countdown: "+days+" days remaining ❤️";
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+const bgMusic=document.getElementById('bgMusic');
+const muteBtn=document.getElementById('muteBtn');
+
+muteBtn.onclick=()=>{
+
+if(bgMusic.paused){
+bgMusic.play();
+muteBtn.innerHTML='🔇';
+}else{
+bgMusic.pause();
+muteBtn.innerHTML='🔊';
+}
+};
+
+function playClick(){
+
+const ctx=new(window.AudioContext||window.webkitAudioContext)();
+
+const osc=ctx.createOscillator();
+
+osc.frequency.value=800;
+
+osc.connect(ctx.destination);
+
+osc.start();
+
+osc.stop(ctx.currentTime+0.08);
+}
+
+let secret=0;
+
+document.querySelectorAll('h1')[0].addEventListener('click',()=>{
+
+secret++;
+
+if(secret===5){
+
+alert(
+"You found the secret message:\n\nDhiraj loves you endlessly ❤️"
+);
+}
+});
+
+</script>
+
+</body>
+</html>
